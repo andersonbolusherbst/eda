@@ -1,12 +1,12 @@
 numpy
 pandas
 streamlit
-pandas_profiling.ProfileReport
+pandas_profiling
 streamlit_pandas_profiling
 matplotlib
-plotly.graph_objs
+plotly
 seaborn
-sklearn.cluster.KMeans
+sklearn
 sweetviz
 codecs
 streamlit_plotly_events
