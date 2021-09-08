@@ -28,7 +28,7 @@ if choice == "EDA APP":
     This is an **EDA App** created in Streamlit using the **Pandas-Profiling** library and **HAB LABS** expertise.
     ''')
 
-    st.image("4445(1).jpg")
+    st.image("4445 (1).jpg")
 
     st.write("📊 We enable your business to combine multiple sources of data into one reliable, user-friendly location.")
     st.write("📊 Try it out on your own dataset by uploading it ⬅︎ or have a look at our example of a **Mall Dataset**")
