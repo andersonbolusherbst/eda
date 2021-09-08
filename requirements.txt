@@ -8,6 +8,5 @@ plotly
 seaborn
 sklearn
 sweetviz
-codecs
 streamlit_plotly_events
 streamlit.components.v1
