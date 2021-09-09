@@ -373,7 +373,7 @@ elif choice == "Custom Dataframe Selection":
         st.markdown('''
     # **Customer Dataframe Selection**
     ''')
-        st.image("19201.jpg")
+        st.image("19201 (1).jpg")
         st.write("📊 Below we give you the ability to quickly and efficiently filter large datasets")
         st.write("📊 Additionally, we provide you with a quick but succinct overview of this fitered dataset in the form of a **Sweetviz** report")
      
