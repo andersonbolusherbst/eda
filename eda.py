@@ -1,12 +1,11 @@
+
+# Imports needed for requirements.txt
 import numpy as np
 import pandas as pd
 import streamlit as st
 from pandas_profiling import ProfileReport
 from streamlit_pandas_profiling import st_profile_report
 import matplotlib.pyplot as plt
-import altair as alt
-import plotly.express as px
-import plotly as py
 import seaborn as sns
 import plotly.graph_objs as go
 from sklearn.cluster import KMeans
@@ -14,24 +13,29 @@ import sweetviz as sv
 import streamlit.components.v1 as components
 import codecs
 from streamlit_plotly_events import plotly_events
+from scipy.optimize import curve_fit
+from matplotlib import pyplot
+from numpy import arange
 
 
 # Create a side menu 
-menu = ["EDA APP", "Custom Dataframe Selection", "Customer Segmentation"]
+menu = ["Data Dashboard", "Custom Dataframe Selection", "Customer Segmentation"]
 choice = st.sidebar.selectbox('What would you like to try first?', menu)
 # Create the Home page
-if choice == "EDA APP":    
+if choice == "Data Dashboard":    
 
     # Web App Title
     st.markdown('''
-    # **Exploratory Data Analysis**
-    This is an **EDA App** created in Streamlit using the **Pandas-Profiling** library and **HAB LABS** expertise.
+    # **Data Dashboard**
+    This is an **Data Dashboard** created in Streamlit using the **Pandas-Profiling** library and **HAB LABS** expertise.
     ''')
 
-    st.image("4445 (1).jpg")
+    st.image("/Users/fwworner/Desktop/EDA_WEB_APP/4445.jpg")
 
     st.write("📊 We enable your business to combine multiple sources of data into one reliable, user-friendly location.")
-    st.write("📊 Try it out on your own dataset by uploading it ⬅︎ or have a look at our example of a **Mall Dataset**")
+    st.write("📊 Try it out on your own dataset by uploading it ⬅︎ or have a look at our example of a **Mall Dataset** from [Kaggle](https://www.kaggle.com/)")
+    st.write("📊 This dataset consists of basic data about customers such as age, gender, annual income and spending score.")
+    st.write("📊 Spending Score has been assigned to the customer based on defined parameters like customer behavior and purchasing data.")
     # Upload CSV data
     with st.sidebar.header('Upload your CSV data'):
         uploaded_file = st.sidebar.file_uploader("Upload your CSV file here", type=['csv'])
@@ -79,7 +83,7 @@ if choice == "EDA APP":
             # Example data
             @st.cache(allow_output_mutation=True)
             def load_data():
-                a = pd.read_csv("Mall_Customers.csv")
+                a = pd.read_csv("/Users/fwworner/Desktop/EDA_WEB_APP/Mall_Customers.csv")
                 return a
             df = load_data()
             pr = ProfileReport(df, explorative=True)
@@ -92,16 +96,18 @@ if choice == "EDA APP":
             
             st.header('**Pandas Profiling Report**')
             st.write("📊 The first part of our data analysis of this dataset comes in the form or a **Pandas Profiling Report**")
-            st.write("📊 You can think of this as a nuts and bolts, deepdive into your data. It focusses on:") 
-            st.write(" 1) **Numerical Breakdowns** of each column of your data")
-            st.write(" 2) **Missing Values** -- Missing datapoints or entries in your dataset")
-            st.write(" 3) **Correlation between features** -- How interdependant two or more columns are in your dataset")
-            st.write(" 4) **Cardinality of features** -- How unique each entry in specific columns are. Low value means all of the entries are the same")
-            st.write(" 5) **Interactions between features** -- How do your columns relate to one another")
-            st.write("📊  Feel free to play around with the report below!")
+            st.write("📊 You can think of this as a nuts and bolts, deepdive into your data. It is very technical so if you are just here for the flashy graphs you can always come back to it!")
             
             my_expander = st.expander(label='Open Pandas Profiling Report Here')
             with my_expander:
+                st.subheader("Pandas Profiling Report")
+                st.write("📊  This report focusses on: ")
+                st.write(" 1) **Numerical Breakdowns** of each column of your data")
+                st.write(" 2) **Missing Values** -- Missing datapoints or entries in your dataset")
+                st.write(" 3) **Correlation between features** -- How interdependant two or more columns are in your dataset")
+                st.write(" 4) **Cardinality of features** -- How unique each entry in specific columns are. Low values mean all of the entries are almost the same")
+                st.write(" 5) **Interactions between features** -- How do the columns in your dataset relate to one another")
+                st.write("📊  Feel free to play around with the report below!")
                 st_profile_report(pr)
 
             st.write("---")
@@ -177,7 +183,7 @@ if choice == "EDA APP":
             sns.despine(fig2)
             st.pyplot(fig2)
 
-            st.write("📊 ⬆︎ Is a count of each of defined age groups by gender")
+            st.write("📊 ⬆︎ Is a count of each of our defined age groups by gender")
             st.write("📊  We dive into this a little more in depth ⬇︎")
 
             st.write("---")
@@ -202,7 +208,7 @@ if choice == "EDA APP":
             plt.pie(a, autopct='%.1f%%', labels = mylabels, explode = [0, 0.05,0,0,0], colors = mycolors, textprops={'fontsize': 16})
             st.pyplot(fig5)
 
-            st.write("📊  Our female customers are largely made up of customers in our **Young Adult**,**Adult** and **Middle Aged** age groups")
+            st.write("📊  Females in the dataset are largely made up of customers in our **Young Adult**,**Adult** and **Middle Aged** age groups")
 
             fig6, ax6 = plt.subplots(figsize=(15, 10))
             plt.title("Male: Age Group Breakdown ", fontsize=20)
@@ -210,7 +216,7 @@ if choice == "EDA APP":
 
             st.pyplot(fig6)
 
-            st.write("📊  Male customers are devided more evenly between the age groups with the highest percentage of customers coming from the **Adult** and **Middle Aged** age groups")
+            st.write("📊  Male customers are divided more evenly between the age groups with the highest percentage of customers coming from the **Adult** and **Middle Aged** age groups")
             
             st.write("---")
 
@@ -259,8 +265,8 @@ if choice == "EDA APP":
                 
 
             fig.text(0.13,0.8,"Spending Score Distribution: Gender and Age Range", fontweight="bold", fontfamily='sans-serif', fontsize=32)
-            fig.text(0.13,0.77,'Interestingly, Seniors have no higher spending scores than 60.',fontfamily='sans-serif',fontsize=26)
-            fig.text(0.13,0.75,'This age group has been left out of this analysis.',fontfamily='sans-serif',fontsize=26)
+            fig.text(0.13,0.77,'Senior Citizens have been left out of this analysis due to their sample size.',fontfamily='sans-serif',fontsize=26)
+            
 
             fig.text(0.770,0.77,"  Male", fontweight="bold", fontfamily='sans-serif', fontsize=28, color='cadetblue')
             fig.text(0.825,0.77,"|", fontweight="bold", fontfamily='sans-serif', fontsize=28, color='black')
@@ -268,34 +274,85 @@ if choice == "EDA APP":
 
             st.pyplot(fig) 
 
-            st.write("📊  Next, we investgated the distribution of **spending scores** by **gender** and **age group**")
-            st.write("📊  One interesting insight is that **young adults** ,for both genders, seem to have the **highest spending scores** by distribution")
-            st.write("📊  Another is that **females** dominate across the board in terms of spending scores")
-            st.write("📊  Finally, the two peaks of **teenager** and **middle aged** spending scores seem to mirror each other.")
-            st.write("Feel free to enlarge **⤢** this graphic for a closer look! ")
+            st.write("📊  This graphic investgates the distribution of **spending scores** by **gender** and **age group**")
+            st.write("📊  **Young Adults** ,for both genders, seem to have the **highest spending scores** by distribution (most customers with high spending scores)")
+            st.write("📊  **Females** dominate across the board in terms of spending scores")
+            st.write("📊  The two peaks of **Teenager** and **Middle Aged** spending scores seem to mirror each other.")
+            st.write("Feel free to enlarge **⤡** this graphic for a closer look! ")
 
             st.write("---")  
 
             # --- PLOT Scatter Plots with Line of Best Fit
             st.header("Age vs Spending Score and Gender")
-            fig = sns.lmplot(data=df, x="Spending Score (1-100)", y="Age", hue="Gender");
+            # fig = sns.lmplot(data=df, x="Spending Score (1-100)", y="Age", hue="Gender");
+            def objective(x, a, b, c, d, e, f):
+                return (a * x) + (b * x**2) + (c * x**3) + (d * x**4) + (e * x**5) + f
+            
+            fig, ax1 = plt.subplots()
+            # choose the input and output variables
+            x, y = df["Spending Score (1-100)"], df["Age"]
+            # curve fit
+            popt, _ = curve_fit(objective, x, y)
+            # summarize the parameter values
+            a, b, c, d, e,f = popt
+            # plot input vs output
+            # pyplot.scatter(x, y)
+            # define a sequence of inputs between the smallest and largest known inputs
+            x_line = arange(min(x), max(x), 1)
+            # calculate the output for the range
+            y_line = objective(x_line, a, b, c, d, e, f)
+            # create a line plot for the mapping function
+            sns.scatterplot(data=df, x="Spending Score (1-100)", y="Age", hue="Gender", s=200)
+            pyplot.plot(x_line, y_line, '--', color='purple',lw = 2.5)
             st.pyplot(fig)
 
-            st.write("📊 For both men and women our analysis shows that age is **negatively correlated** with **spending score**")
-            st.write("📊  This mean that as age ⬆︎, all things being equal, spending score⬇︎")
-            st.write("📊 All things being equal, customers aged between **20** and **40** look to have **higher spending scores** at this mall")
+            st.write("📊 For both men and women our analysis shows that age is somewhat **negatively correlated** with **Spending Score**. It must be noted that this correlation is **extreamly weak**.")
+            st.write("📊 Spending Scores greater than 80 look to be positively correlated with Age. This means that at this point, for the most part, as Age ⬆︎ Spending Score⬆︎")
+            
 
             st.header("Annual Income vs Age and Gender")
-            fig = sns.lmplot(x="Annual Income (k$)", y="Age", hue="Gender", data=df)
+            
+            
+            fig, ax1 = plt.subplots()
+            # choose the input and output variables
+            x, y = df["Annual Income (k$)"], df["Age"]
+            # curve fit
+            popt, _ = curve_fit(objective, x, y)
+            # summarize the parameter values
+            a, b, c, d, e,f = popt
+            # plot input vs output
+            # pyplot.scatter(x, y)
+            # define a sequence of inputs between the smallest and largest known inputs
+            x_line = arange(min(x), max(x), 1)
+            # calculate the output for the range
+            y_line = objective(x_line, a, b, c, d, e, f)
+            # create a line plot for the mapping function
+            sns.scatterplot(data=df, x="Annual Income (k$)", y="Age", hue="Gender", s=200)
+            pyplot.plot(x_line, y_line, '--', color='purple',lw = 2.5)
             st.pyplot(fig)
             
-            st.write("📊 In this dataset **males** age looks to be **negatively correlated** with **annual salary** while **females** age look to be **positively correlated**")
+            st.write("📊 For both genders there is no clear pattern or relationship between **Annual Income** and **Age**")
             
             st.header("Annual Income vs Spending Score and Gender")
-            fig = sns.lmplot(x="Annual Income (k$)", y="Spending Score (1-100)", hue="Gender", data=df)
+            fig, ax1 = plt.subplots()
+            # choose the input and output variables
+            x, y = df["Annual Income (k$)"], df["Spending Score (1-100)"]
+            # curve fit
+            popt, _ = curve_fit(objective, x, y)
+            # summarize the parameter values
+            a, b, c, d, e,f = popt
+            # plot input vs output
+            # pyplot.scatter(x, y)
+            # define a sequence of inputs between the smallest and largest known inputs
+            x_line = arange(min(x), max(x), 1)
+            # calculate the output for the range
+            y_line = objective(x_line, a, b, c, d, e, f)
+            # create a line plot for the mapping function
+            sns.scatterplot(data=df, x="Annual Income (k$)", y="Spending Score (1-100)", hue="Gender", s=200)
+            pyplot.plot(x_line, y_line, '--', color='purple',lw = 2.5)
             st.pyplot(fig)
             
-            st.write("📊 There is **no clear** correlation between **annual income** and **spending score** by gender")
+            st.write("📊 There is **no clear** correlation between **Annual Income** and **Spending Score** by gender")
 
             st.write("---")
 
@@ -316,15 +373,15 @@ elif choice == "Custom Dataframe Selection":
         st.markdown('''
     # **Customer Dataframe Selection**
     ''')
-        st.image("19201(1).jpg")
-        st.write("📊 Below we give you the ability to quickly and effeciently filter large datasets")
+        st.image("/Users/fwworner/Desktop/EDA_WEB_APP/19201.jpg")
+        st.write("📊 Below we give you the ability to quickly and efficiently filter large datasets")
         st.write("📊 Additionally, we provide you with a quick but succinct overview of this fitered dataset in the form of a **Sweetviz** report")
      
     # Example data
         @st.cache(allow_output_mutation=True)
 
         def load_data():
-            a = pd.read_csv("Mall_Customers.csv")
+            a = pd.read_csv("/Users/fwworner/Desktop/EDA_WEB_APP/Mall_Customers.csv")
             return a
         df = load_data()      
            
@@ -405,7 +462,7 @@ elif choice == "Customer Segmentation":
     **Customer Segmentation** is the process of division of a customer base into several groups.
     ''')
     
-    st.image("too-broad-customer-segmentation.jpeg")
+    st.image("/Users/fwworner/Desktop/EDA_WEB_APP/too-broad-customer-segmentation.jpeg")
     st.write("📊  These groups share similarities that are relevant to marketing such as gender, age, annual income and spending habits.")
     st.write("📊  Once your company understands the characteristics of these 'clusters' of clients you can divert your ad budget away from those who are unlikely to purchase your product or service towards your most valuable customers")
     st.write("📊  This customer segmentation will be completed on our **Mall Dataset**")
@@ -413,7 +470,7 @@ elif choice == "Customer Segmentation":
     if st.button('Press me for Customer Segmentation'):
         @st.cache(allow_output_mutation=True)
         def load_data():
-            a = pd.read_csv("Mall_Customers.csv")
+            a = pd.read_csv("/Users/fwworner/Desktop/EDA_WEB_APP/Mall_Customers.csv")
             return a
         df = load_data() 
         
@@ -469,24 +526,25 @@ elif choice == "Customer Segmentation":
 
         st.write(" 📊  Machine learning models are powerful decision-making tools. They can precisely identify customer segments, which is much harder to do manually or with conventional analytical methods.")
         st.write("📊  Above ⬆︎ we can see a visual representation of a customer segmentation on our **Mall Dataset**")
-        st.write("📊  In this case the clusters have been segmented based on Age and Spending Score")
+        st.write("📊  In this case the clusters have been segmented based on Age and Spending Score into 6 seperate groups")
 
-        st.header("Customer Segmentation: Age and Annual Income")
-        fig, ax = plt.subplots()
-        plt.clf()
-        Z = Z.reshape(xx.shape)
-        plt.imshow(Z , interpolation='nearest', 
-            extent=(xx.min(), xx.max(), yy.min(), yy.max()),
-            cmap = plt.cm.Pastel2, aspect = 'auto', origin='lower')
+        # st.header("Customer Segmentation: Age and Annual Income")
+        # fig, ax = plt.subplots()
+        # plt.clf()
+        # Z = Z.reshape(xx.shape)
+        # plt.imshow(Z , interpolation='nearest', 
+        #     extent=(xx.min(), xx.max(), yy.min(), yy.max()),
+        #     cmap = plt.cm.Pastel2, aspect = 'auto', origin='lower')
 
-        plt.scatter( x = 'Age' ,y = 'Annual Income (k$)' , data = df , c = labels1 , 
-                s = 100 )
-        plt.scatter(x = centroids1[: , 0] , y =  centroids1[: , 1] , s = 200 , c = 'red' , alpha = 0.7)
-        plt.xlabel("Age")
-        plt.ylabel("Annual Income(k$)")
-        st.pyplot(fig)
+        # plt.scatter( x = 'Age' ,y = 'Annual Income (k$)' , data = df , c = labels1 , 
+        #         s = 100 )
+        # plt.scatter(x = centroids1[: , 0] , y =  centroids1[: , 1] , s = 200 , c = 'red' , alpha = 0.7)
+        # plt.xlabel("Age")
+        # plt.ylabel("Annual Income(k$)")
+        # st.pyplot(fig)
 
-        st.write("📊 Above ⬆︎ our clusters have been segmented based on Age and Annual Income")
+        # st.write("📊 Above ⬆︎ our clusters have been segmented based on Age and Annual Income")
+        
         
         ##### 3D Vis
         X3 = df[['Age' , 'Annual Income (k$)' ,'Spending Score (1-100)']].iloc[: , :].values
@@ -543,7 +601,7 @@ elif choice == "Customer Segmentation":
 
         ####---- Extra work to make the below work!
         st.subheader("Customer Segmentation Insights")
-        st.write("📊  For the following graphics please press the ⤢ button for a better view!")
+        st.write("📊  For the following graphics please press the ⤡ button for a better view!")
         X3 = df[['Age' , 'Annual Income (k$)' ,'Spending Score (1-100)']].iloc[: , :].values
         inertia = []
         for n in range(1 , 11):
@@ -614,6 +672,22 @@ elif choice == "Customer Segmentation":
         fig.lines.extend([l1])
         st.pyplot(fig)
 
+
+        st.markdown(
+           """
+        | Rank | Order of Importance (Customer Segmentation) | Recommendations |
+        | --- | --- | --- |
+        | 1 | **Targets** |  Untapped potential. Customers with massive upside if targeted correctly |
+        | 2 | **Most Valuable** | High priority customers. "Whales" |
+        | 3 | **Very Valuable** | Priority customers |
+        | 4 | **Valuable** | Customers that should be maintained |
+        | 5 | **Less Valuable** | Customers to pay less attention to |
+        | 6 | **Least Valuable** | Customers to direct marketing away from |
+             
+        """)
+        
+        st.write("📊  It is important to remember that these rankings and recommendations are our thanks to **HAB LABS** expertise and experience. Customer segmentation is subjective by nature.")
+
         st.write("---")
 
         #Percentages BarPlot by Gender
@@ -679,7 +753,7 @@ elif choice == "Customer Segmentation":
                 '''
         We see that females dominate most of our categories; except our Targets cluster.
         How might we encourage more male customers?
-        Incentive programs for females in our Targets cluster?''' , fontsize=14,fontfamily='serif')   
+        Incentive programs for females in the Targets cluster?''' , fontsize=14,fontfamily='serif')   
 
         for s in ['top', 'left', 'right', 'bottom']:
             ax.spines[s].set_visible(False)
@@ -693,7 +767,7 @@ elif choice == "Customer Segmentation":
 
         st.write("---")
 
-        st.image("Heatmap.png")
+        st.image("/Users/fwworner/Desktop/EDA_WEB_APP/Heatmap.png")
 
         st.markdown('''
     # **FREE CONSULTATION**
@@ -701,8 +775,58 @@ elif choice == "Customer Segmentation":
     ''')
         st.button("FREE CONSULTATION")
 
-    
+        # ####------ MArkdown Table for Main Page (Boston)
+
+        # st.markdown(
+        #        """
+        # | Label | Description |
+        # | --- | --- |
+        # | `Project Name` | Boston 1970s House Price Prediction |
+        # | `Project Type` | Machine Learning - Predict Boston House Prices in the 1970s |
+        # | `Machine Learning Model` | Regression |
+        # | `Machine Learning Description`| Regression models can be used to predict and forecast based off historical data. Independant variables (explanatory variables) are used to predict the dependant variable (explained or response variable). In this case characteristics of houses have been used to predict a houses final price|
+        # | `Applications` | Forecasting sales, costs and  customer signups. Predicting the price of a house given house features, predicting the impact of SAT/GRE scores on college admissions and determining the causal-effect relationship between advertising spend & revenue. |
+             
+        # """
+        # )
         
+
+        # # ####------ Markdown Table for Main Page (Classification)
+
+        # st.markdown(
+        #    """
+        # | Label | Description |
+        # | --- | --- |
+        # | `Project Name` | Predicting Subscription Service Cancellations (Churn Rate) |
+        # | `Project Type` | Machine Learning - Classification (Churn Rate of Telco Communications) |
+        # | `Machine Learning Model` | Decision Tree |
+        # | `Machine Learning Description`| Decision Tree models can be used to place dependant variables into groups or categories based on their characteristics/features. In this case - 'cancel' or 'don't cancel' a subscription. There are a variety of classification models that are best suited for different applications and data sets, such as Random Forest, KNN and Support Vector Machine. In this case we employed a Light Gradient Boost Machine Learning Model.|
+        # | `Applications` | Customer segmentation, churn rate prediction, lead scoring, image recognition, borrower loan defaults and business risk management |
+             
+        # """
+        # )
+
+
+
+        # # ### ----- Markdown Table for Main Page (Time Series)
+
+        # # st.markdown(
+        # #                 """
+        # #             | Label | Description |
+        # #             | --- | --- |
+        # #             | `Project Name` | Predicting Stock Prices |
+        # #             | `Project Type` | Machine Learning - Time Series Forecast (Forcasting Stock Prices) |
+        # #             | `Machine Learning Model` | Facebook Prophet |
+        # #             | `Machine Learning Description`| Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, daily seasonality and holiday effects. It works best with time series data that has strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend and typically handles outliers well.|
+        # #             | `Applications` | Customer segmentation, churn rate prediction, lead scoring, image recognition, borrower loan defaults and business risk management |
+                    
+        # #             """
+        # #             )
+
+        
+
+            
+                
 
 
 
