@@ -775,53 +775,53 @@ elif choice == "Customer Segmentation":
     ''')
         st.button("FREE CONSULTATION")
 
-        # ####------ MArkdown Table for Main Page (Boston)
+        ####------ MArkdown Table for Main Page (Boston)
 
-        # st.markdown(
-        #        """
-        # | Label | Description |
-        # | --- | --- |
-        # | `Project Name` | Boston 1970s House Price Prediction |
-        # | `Project Type` | Machine Learning - Predict Boston House Prices in the 1970s |
-        # | `Machine Learning Model` | Regression |
-        # | `Machine Learning Description`| Regression models can be used to predict and forecast based off historical data. Independant variables (explanatory variables) are used to predict the dependant variable (explained or response variable). In this case characteristics of houses have been used to predict a houses final price|
-        # | `Applications` | Forecasting sales, costs and  customer signups. Predicting the price of a house given house features, predicting the impact of SAT/GRE scores on college admissions and determining the causal-effect relationship between advertising spend & revenue. |
+        st.markdown(
+               """
+        | Label | Description |
+        | --- | --- |
+        | `Project Name` | Boston 1970s House Price Prediction |
+        | `Project Type` | Machine Learning - Predict Boston House Prices in the 1970s |
+        | `Machine Learning Model` | Regression |
+        | `Machine Learning Description`| Regression models can be used to predict and forecast based off historical data. Independant variables (explanatory variables) are used to predict the dependant variable (explained or response variable). In this case characteristics of houses have been used to predict a houses final price|
+        | `Applications` | Forecasting sales, costs and  customer signups. Predicting the price of a house given house features, predicting the impact of SAT/GRE scores on college admissions and determining the causal-effect relationship between advertising spend & revenue. |
              
-        # """
-        # )
+        """
+        )
         
 
-        # # ####------ Markdown Table for Main Page (Classification)
+        # ####------ Markdown Table for Main Page (Classification)
 
-        # st.markdown(
-        #    """
-        # | Label | Description |
-        # | --- | --- |
-        # | `Project Name` | Predicting Subscription Service Cancellations (Churn Rate) |
-        # | `Project Type` | Machine Learning - Classification (Churn Rate of Telco Communications) |
-        # | `Machine Learning Model` | Decision Tree |
-        # | `Machine Learning Description`| Decision Tree models can be used to place dependant variables into groups or categories based on their characteristics/features. In this case - 'cancel' or 'don't cancel' a subscription. There are a variety of classification models that are best suited for different applications and data sets, such as Random Forest, KNN and Support Vector Machine. In this case we employed a Light Gradient Boost Machine Learning Model.|
-        # | `Applications` | Customer segmentation, churn rate prediction, lead scoring, image recognition, borrower loan defaults and business risk management |
+        st.markdown(
+           """
+        | Label | Description |
+        | --- | --- |
+        | `Project Name` | Predicting Subscription Service Cancellations (Churn Rate) |
+        | `Project Type` | Machine Learning - Classification (Churn Rate of Telco Communications) |
+        | `Machine Learning Model` | Decision Tree |
+        | `Machine Learning Description`| Decision Tree models can be used to place dependant variables into groups or categories based on their characteristics/features. In this case - 'cancel' or 'don't cancel' a subscription. There are a variety of classification models that are best suited for different applications and data sets, such as Random Forest, KNN and Support Vector Machine. In this case we employed a Light Gradient Boost Machine Learning Model.|
+        | `Applications` | Customer segmentation, churn rate prediction, lead scoring, image recognition, borrower loan defaults and business risk management |
              
-        # """
-        # )
+        """
+        )
 
 
 
         # # ### ----- Markdown Table for Main Page (Time Series)
 
-        # # st.markdown(
-        # #                 """
-        # #             | Label | Description |
-        # #             | --- | --- |
-        # #             | `Project Name` | Predicting Stock Prices |
-        # #             | `Project Type` | Machine Learning - Time Series Forecast (Forcasting Stock Prices) |
-        # #             | `Machine Learning Model` | Facebook Prophet |
-        # #             | `Machine Learning Description`| Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, daily seasonality and holiday effects. It works best with time series data that has strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend and typically handles outliers well.|
-        # #             | `Applications` | Customer segmentation, churn rate prediction, lead scoring, image recognition, borrower loan defaults and business risk management |
+        st.markdown(
+                        """
+                    | Label | Description |
+                    | --- | --- |
+                    | `Project Name` | Predicting Stock Prices |
+                    | `Project Type` | Machine Learning - Time Series Forecast (Forcasting Stock Prices) |
+                    | `Machine Learning Model` | Facebook Prophet |
+                    | `Machine Learning Description`| Prophet is a procedure for forecasting time series data based on an additive model where non-linear trends are fit with yearly, weekly, daily seasonality and holiday effects. It works best with time series data that has strong seasonal effects and several seasons of historical data. Prophet is robust to missing data and shifts in the trend and typically handles outliers well.|
+                    | `Applications` | Customer segmentation, churn rate prediction, lead scoring, image recognition, borrower loan defaults and business risk management |
                     
-        # #             """
-        # #             )
+                    """
+                    )
 
         
 
