@@ -458,12 +458,12 @@ elif choice == "Custom Dataframe Selection":
             st_display_sweetviz("SWEETVIZ_REPORT.html")
 
             st.markdown('''
-        # **FREE CONSULTATION**
-        If you like what you see dont hesitate to contact us for a chat ⬇︎!
-        ''')
+            # **FREE CONSULTATION**
+            If you like what you see dont hesitate to contact us for a chat ⬇︎!
+            ''')
             
-        link = '[Free Consultation](https://calendly.com/andersondbk)'
-        st.markdown(link, unsafe_allow_html=True)
+            link = '[Free Consultation](https://calendly.com/andersondbk)'
+            st.markdown(link, unsafe_allow_html=True)
 
         
         
