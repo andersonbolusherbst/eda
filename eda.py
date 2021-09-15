@@ -66,7 +66,7 @@ if choice == "Data Dashboard":
         
         if st.button("Generate Sweetviz Report"):
             report = sv.analyze(df)
-            report.show_html("SWEETVIZ_REPORT.html")
+            report.show_html()
             #st_display_sweetviz("SWEETVIZ_REPORT.html")
 
         st.markdown('''
@@ -443,11 +443,8 @@ elif choice == "Custom Dataframe Selection":
                         
         if st.button("Sweetviz Report"):
             report = sv.analyze(df)
-            report.show_html(filepath = None, 
-            open_browser=True, 
-            layout='widescreen', 
-            scale=None)
-            st_display_sweetviz("SWEETVIZ_REPORT.html")
+            report.show_html()
+            #st_display_sweetviz("SWEETVIZ_REPORT.html")
 
             st.markdown('''
         # **FREE CONSULTATION**
