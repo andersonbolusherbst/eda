@@ -463,7 +463,7 @@ elif choice == "Custom Dataframe Selection":
             ''')
             
             link = '[Free Consultation](https://calendly.com/andersondbk)'
-            st.markdown(link, unsafe_allow_html=True)
+            st.markdown('<style>h1{color: red;}</style>',link, unsafe_allow_html=True)
 
         
         
