@@ -65,18 +65,18 @@ if choice == "Data Dashboard":
             components.html(page, width = width, height = height,scrolling = True)
         
         
-        if st.button("Generate Sweetviz Report"):
-            js = "window.open('https://www.streamlit.io/')"  # New tab or window
-            js = "window.location.href = 'https://www.streamlit.io/'"  # Current tab
-            html = '<img src onerror="{}">'.format(js)
-            div = Div(text=html)
-            report = sv.analyze(df)
-            report.show_html(div)
-        
         #if st.button("Generate Sweetviz Report"):
+            #js = "window.open('https://www.streamlit.io/')"  # New tab or window
+            #js = "window.location.href = 'https://www.streamlit.io/'"  # Current tab
+            #html = '<img src onerror="{}">'.format(js)
+            #div = Div(text=html)
             #report = sv.analyze(df)
-            #report.show_html("SWEETVIZ_REPORT.html")
-            #st_display_sweetviz("SWEETVIZ_REPORT.html")
+            #report.show_html(div)
+        
+        if st.button("Generate Sweetviz Report"):
+            report = sv.analyze(df)
+            report.show_html("SWEETVIZ_REPORT.html")
+            st_display_sweetviz("SWEETVIZ_REPORT.html")
 
         st.markdown('''
         # **FREE CONSULTATION**
@@ -537,24 +537,6 @@ elif choice == "Customer Segmentation":
         st.write("📊  Above ⬆︎ we can see a visual representation of a customer segmentation on our **Mall Dataset**")
         st.write("📊  In this case the clusters have been segmented based on Age and Spending Score into 6 seperate groups")
 
-        # st.header("Customer Segmentation: Age and Annual Income")
-        # fig, ax = plt.subplots()
-        # plt.clf()
-        # Z = Z.reshape(xx.shape)
-        # plt.imshow(Z , interpolation='nearest', 
-        #     extent=(xx.min(), xx.max(), yy.min(), yy.max()),
-        #     cmap = plt.cm.Pastel2, aspect = 'auto', origin='lower')
-
-        # plt.scatter( x = 'Age' ,y = 'Annual Income (k$)' , data = df , c = labels1 , 
-        #         s = 100 )
-        # plt.scatter(x = centroids1[: , 0] , y =  centroids1[: , 1] , s = 200 , c = 'red' , alpha = 0.7)
-        # plt.xlabel("Age")
-        # plt.ylabel("Annual Income(k$)")
-        # st.pyplot(fig)
-
-        # st.write("📊 Above ⬆︎ our clusters have been segmented based on Age and Annual Income")
-        
-        
         ##### 3D Vis
         X3 = df[['Age' , 'Annual Income (k$)' ,'Spending Score (1-100)']].iloc[: , :].values
         inertia = []
