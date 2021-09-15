@@ -59,7 +59,7 @@ if choice == "Data Dashboard":
         st.header('**Overview of your Data**')
 
         #-- Analyse with Sweetviz
-        def st_display_sweetviz(report_html, width = 800, height= 800):
+        def st_display_sweetviz(report_html, width = 1200, height= 800):
             report_file = codecs.open(report_html, "r")
             page = report_file.read()
             components.html(page, width = width, height = height,scrolling = True)
