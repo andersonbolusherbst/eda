@@ -66,7 +66,7 @@ if choice == "Data Dashboard":
         
         if st.button("Generate Sweetviz Report"):
             report = sv.analyze(df)
-            report.show_html(filepath='SWEETVIZ_REPORT.html', 
+            report.show_html( 
             open_browser=True, 
             layout='widescreen', 
             scale=None)
