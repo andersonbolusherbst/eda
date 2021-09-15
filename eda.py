@@ -768,7 +768,7 @@ elif choice == "Customer Segmentation":
     If you like what you see dont hesitate to contact us for a chat ⬇︎!
     ''')
         link = '[Free Consultation](https://calendly.com/andersondbk)'
-        st.markdown(**link**, unsafe_allow_html=True)
+        st.markdown(link, unsafe_allow_html=True)
         
          
             
