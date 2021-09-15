@@ -27,7 +27,7 @@ if choice == "Data Dashboard":
     # Web App Title
     st.markdown('''
     # **Data Dashboard**
-    This is an **Data Dashboard** created in Streamlit using the **Pandas-Profiling** library and **HAB LABS** expertise.
+    This is a **Data Dashboard** created in Streamlit using the **Pandas-Profiling** library and **HAB LABS** expertise.
     ''')
 
     st.image("4445 (1).jpg")
