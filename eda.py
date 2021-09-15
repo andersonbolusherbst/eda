@@ -444,16 +444,16 @@ elif choice == "Custom Dataframe Selection":
                 df = df[df["Gender"] == option]
                 df
                 st.write("📊 Take a look at the Sweetviz report on your filtered dataset in the new tab by hitting the button below ⬇︎!")
-                #-- Analyse with Sweetviz
-                def st_display_sweetviz(report_html, width = 1000, height= 500):
-                    report_file = codecs.open(report_html, "r")
-                    page = report_file.read()
-                    components.html(page, width = width, height = height,scrolling = True)
+        #-- Analyse with Sweetviz
+        def st_display_sweetviz(report_html, width = 1400, height= 1000):
+            report_file = codecs.open(report_html, "r")
+            page = report_file.read()
+            components.html(page, width = width, height = height,scrolling = True)
                         
-        if st.button("Sweetviz Report"):
+        if st.button("Generate Sweetviz Report"):
             report = sv.analyze(df)
-            report.show_html()
-            st_display_sweetviz()
+            report.show_html("SWEETVIZ_REPORT.html")
+            st_display_sweetviz("SWEETVIZ_REPORT.html")
 
             st.markdown('''
         # **FREE CONSULTATION**
