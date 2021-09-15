@@ -453,7 +453,7 @@ elif choice == "Custom Dataframe Selection":
         if st.button("Sweetviz Report"):
             report = sv.analyze(df)
             report.show_html()
-            st_display_sweetviz("SWEETVIZ_REPORT.html")
+            st_display_sweetviz()
 
             st.markdown('''
         # **FREE CONSULTATION**
