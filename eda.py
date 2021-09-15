@@ -16,6 +16,7 @@ from streamlit_plotly_events import plotly_events
 from scipy.optimize import curve_fit
 from matplotlib import pyplot
 from numpy import arange
+from bokeh.models.widgets import Div
 
 
 # Create a side menu 
@@ -63,10 +64,19 @@ if choice == "Data Dashboard":
             page = report_file.read()
             components.html(page, width = width, height = height,scrolling = True)
         
+        
         if st.button("Generate Sweetviz Report"):
+            js = "window.open('https://www.streamlit.io/')"  # New tab or window
+            js = "window.location.href = 'https://www.streamlit.io/'"  # Current tab
+            html = '<img src onerror="{}">'.format(js)
+            div = Div(text=html)
             report = sv.analyze(df)
-            report.show_html("SWEETVIZ_REPORT.html")
-            st_display_sweetviz("SWEETVIZ_REPORT.html")
+            report.show_html(div)
+        
+        #if st.button("Generate Sweetviz Report"):
+            #report = sv.analyze(df)
+            #report.show_html("SWEETVIZ_REPORT.html")
+            #st_display_sweetviz("SWEETVIZ_REPORT.html")
 
         st.markdown('''
         # **FREE CONSULTATION**
@@ -773,6 +783,10 @@ elif choice == "Customer Segmentation":
     If you like what you see dont hesitate to contact us for a chat ⬇︎!
     ''')
         st.button("FREE CONSULTATION")
+        
+         
+            
+        
 
   
 
