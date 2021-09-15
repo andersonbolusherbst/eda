@@ -69,7 +69,7 @@ if choice == "Data Dashboard":
             report.show_html(filepath='SWEETVIZ_REPORT.html', 
             open_browser=True, 
             layout='widescreen', 
-            scale=None))
+            scale=None)
             #st_display_sweetviz("SWEETVIZ_REPORT.html")
 
         st.markdown('''
@@ -449,7 +449,7 @@ elif choice == "Custom Dataframe Selection":
             report.show_html(filepath='SWEETVIZ_REPORT2.html', 
             open_browser=True, 
             layout='widescreen', 
-            scale=None))
+            scale=None)
             #st_display_sweetviz("SWEETVIZ_REPORT.html")
 
             st.markdown('''
