@@ -374,7 +374,8 @@ if choice == "Data Dashboard":
 
         If you like what you see dont hesitate to contact us for a chat ⬇︎!
         ''')
-            st.button("FREE CONSULTATION")
+            link = '[Free Consultation](http://hablabs.tech/)'
+            st.markdown(link, unsafe_allow_html=True)
 
             
 elif choice == "Custom Dataframe Selection":
@@ -459,7 +460,8 @@ elif choice == "Custom Dataframe Selection":
         # **FREE CONSULTATION**
         If you like what you see dont hesitate to contact us for a chat ⬇︎!
         ''')
-            st.button("FREE CONSULTATION")
+            link = '[Free Consultation](http://hablabs.tech/)'
+            st.markdown(link, unsafe_allow_html=True)
                 
         
         
@@ -764,7 +766,8 @@ elif choice == "Customer Segmentation":
     # **FREE CONSULTATION**
     If you like what you see dont hesitate to contact us for a chat ⬇︎!
     ''')
-        st.button("FREE CONSULTATION")
+        link = '[Free Consultation](http://hablabs.tech/)'
+        st.markdown(link, unsafe_allow_html=True)
         
          
             
