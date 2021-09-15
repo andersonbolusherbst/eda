@@ -82,7 +82,8 @@ if choice == "Data Dashboard":
         # **FREE CONSULTATION**
         If you like what you see dont hesitate to contact us for a chat ⬇︎!
         ''')
-        st.button("FREE CONSULTATION")    
+        link = '[Free Consultation](https://calendly.com/andersondbk)'
+        st.markdown(link, unsafe_allow_html=True)   
         
         
 
@@ -374,7 +375,7 @@ if choice == "Data Dashboard":
 
         If you like what you see dont hesitate to contact us for a chat ⬇︎!
         ''')
-            link = '[Free Consultation](http://hablabs.tech/)'
+            link = '[Free Consultation](https://calendly.com/andersondbk)'
             st.markdown(link, unsafe_allow_html=True)
 
             
@@ -460,7 +461,7 @@ elif choice == "Custom Dataframe Selection":
         # **FREE CONSULTATION**
         If you like what you see dont hesitate to contact us for a chat ⬇︎!
         ''')
-            link = '[Free Consultation](http://hablabs.tech/)'
+            link = '[Free Consultation](https://calendly.com/andersondbk)'
             st.markdown(link, unsafe_allow_html=True)
                 
         
@@ -766,8 +767,8 @@ elif choice == "Customer Segmentation":
     # **FREE CONSULTATION**
     If you like what you see dont hesitate to contact us for a chat ⬇︎!
     ''')
-        link = '[Free Consultation](http://hablabs.tech/)'
-        st.markdown(link, unsafe_allow_html=True)
+        link = '[Free Consultation](https://calendly.com/andersondbk)'
+        st.markdown(**link**, unsafe_allow_html=True)
         
          
             
