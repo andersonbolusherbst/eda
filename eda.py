@@ -59,7 +59,7 @@ if choice == "Data Dashboard":
         st.header('**Overview of your Data**')
 
         #-- Analyse with Sweetviz
-        def st_display_sweetviz(report_html, width = 3000, height= 2000):
+        def st_display_sweetviz(report_html, width = 500, height= 2000):
             report_file = codecs.open(report_html, "r")
             page = report_file.read()
             components.html(page, width = width, height = height,scrolling = True)
@@ -68,7 +68,7 @@ if choice == "Data Dashboard":
             report = sv.analyze(df)
             report.show_html(filepath ="SWEETVIZ_REPORT.html", 
             open_browser=True, 
-            layout='widescreen', 
+            layout='vertical', 
             scale=None)
             st_display_sweetviz("SWEETVIZ_REPORT.html")
 
@@ -450,7 +450,7 @@ elif choice == "Custom Dataframe Selection":
             open_browser=True, 
             layout='widescreen', 
             scale=None)
-            #st_display_sweetviz("SWEETVIZ_REPORT.html")
+            st_display_sweetviz("SWEETVIZ_REPORT.html")
 
             st.markdown('''
         # **FREE CONSULTATION**
