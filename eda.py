@@ -39,7 +39,14 @@ if choice == "Data Dashboard":
     # Upload CSV data
     with st.sidebar.header('Upload your CSV data'):
         uploaded_file = st.sidebar.file_uploader("Upload your CSV file here", type=['csv'])
-
+    st.markdown("""
+                    <style>
+                   body {
+                         color: #034F84;
+                  background-color: #F3F3F3;
+                               }
+                          </style>
+                  """, unsafe_allow_html=True)
 
     # Pandas Profiling Report
     if uploaded_file is not None:
@@ -66,7 +73,7 @@ if choice == "Data Dashboard":
         
         if st.button("Generate Sweetviz Report"):
             report = sv.analyze(df)
-            report.show_html()
+            report.show_html("SWEETVIZ_REPORT.html")
             #st_display_sweetviz("SWEETVIZ_REPORT.html")
 
         st.markdown('''
